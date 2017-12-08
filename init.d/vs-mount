@@ -1,0 +1,74 @@
+#!/bin/bash
+
+. /etc/vs-tools/util-vserver.cf
+. /etc/vs-tools/vs-tools.cf
+
+mnt=$(cat /proc/mounts |awk '{print $2}')
+pools=$(cat ${_VSERVERS_CONF}/*/pool 2>/dev/null |sort -u)
+
+case "$1" in
+
+	status)
+		for pool in $pools ; do
+			echo -n "Pool '$pool' is "
+			echo "$mnt" |grep "^${_VSTOOLS_BASE}/$pool$" > /dev/null
+			if [ $? -eq 0 ] ; then
+				echo "mounted."
+			else
+				echo "not mounted."
+			fi
+		done
+		echo
+	;;
+	
+	start)
+		pvscan 2>/dev/null >/dev/null
+		/etc/init.d/lvm2 start 2>/dev/null >/dev/null
+		for pool in $pools ; do
+			echo -n "Mounting pool '$pool': "
+			echo "$mnt" |grep "^${_VSTOOLS_BASE}/$pool$" > /dev/null
+			if [ $? -ne 0 ] ; then
+				[ -d ${_VSTOOLS_BASE}/$pool ] || mkdir -p ${_VSTOOLS_BASE}/$pool
+				mount -o ${_VSTOOLS_MOUNT_OPTS} /dev/$pool ${_VSTOOLS_BASE}/$pool
+				echo "done."
+			else
+				echo "already mounted."
+			fi
+		done
+		echo
+	;;
+
+	stop)
+		for snapshot in $(lvs --noheading -o lv_attr,vg_name,lv_name |awk '{print $1" "$2"/"$3}' |egrep "^s|^S" |cut -d" " -f2) ; do
+			echo -n "Removing snapshot '$snapshot': "
+			umount /dev/$snapshot 2>/dev/null >/dev/null
+			lvremove -f $snapshot 2>/dev/null >/dev/null
+			echo "done."
+		done
+		for pool in $pools ; do
+			busy=0
+			echo -n "Umounting pool '$pool': "
+			echo "$mnt" |grep "^${_VSTOOLS_BASE}/$pool$" > /dev/null
+			if [ $? -eq 0 ] ; then
+				for vserver in $(ls ${_VSTOOLS_BASE}/$pool 2>/dev/null |sed -e "s/lost+found//g") ; do
+					test -f ${_VSERVERS_RUN}/$vserver && busy=1
+				done
+				if [ $busy -eq 0 ] ; then
+					umount ${_VSTOOLS_BASE}/$pool && rmdir ${_VSTOOLS_BASE}/$pool
+					echo "done."
+				else
+					echo "pool is busy."
+				fi
+			fi
+		done
+		echo
+	;;
+
+	*)
+		echo "Usage: /etc/init.d/vs-mount {start|stop|status}"
+		exit 1
+	;;
+	
+esac
+
+exit 0

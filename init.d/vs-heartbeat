@@ -1,0 +1,43 @@
+#!/bin/bash
+
+DAEMON=/usr/lib/vs-tools/vs-heartbeat.daemon
+PIDFILE=/var/run/vs-heartbeat.daemon
+
+case "$1" in
+	status)
+		echo -n "Heartbeat daemon is "
+		PID=$(cat $PIDFILE 2>/dev/null)
+		ps awx |awk '{print $1" "$6}' |grep "^${PID} ${DAEMON}$" >/dev/null
+		[ $? -eq 0 ] && echo "running." || echo "stopped."
+	;;
+	start)
+		echo -n "Starting vs-tools heartbeat daemon: "
+		if [ -f $PIDFILE ] ; then
+			echo "already running."
+			exit 0
+		else
+			start-stop-daemon --start -x $DAEMON </dev/null 2>/dev/null >/dev/null &
+		fi
+		[ $? -eq 0 ] && echo "done." || echo "error."
+	;;
+	stop)
+		echo -n "Stopping vs-tools heartbeat daemon: "
+		if [ -f $PIDFILE ] ; then
+			start-stop-daemon --stop -p $PIDFILE 2>/dev/null >/dev/nul && rm $PIDFILE && echo "done." || echo "error."
+		else
+			echo "already stopped."
+			exit 0
+		fi
+	;;
+	restart)
+		$0 stop
+		sleep 1
+		$0 start
+	;;
+	*)
+		echo "Usage: /etc/init.d/vs-heartbeat {start|stop|restart|status}"
+		exit 1
+	;;
+esac
+
+exit 0

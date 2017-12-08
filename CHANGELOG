@@ -1,0 +1,160 @@
+2010-03-29  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * Creation commande 'vs-kickoff':
+   - migration de tous les Vserveurs actifs d'un noeud a un autre.
+   - migration de tous les pools actifs d'un noeud a un autre.
+   - utilisable a partir d'une machine ayant un acces ssh transparent
+     aux noeuds du cluster, peut etre utilisee sur cette machine sans
+     installer la librairie.
+
+ * Creation commande 'show-versions':
+   - affiche les versions disponibles en telechargement des sources
+     Linux-Vserver et Util-Vserver .
+
+ * 'file.sh':
+   - ajout appel /usr/bin/file si pas d'arguments.
+
+2010-03-29  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'provision.sh':
+   - ajout 'provisionClone'
+ 
+ * 'vm.sh':
+   - ajout methode 'clone' pour 'vmBuild'
+
+2010-03-29  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'install-stage1.cf.sample':
+   - mise a jour versions pour kernel 2.6.31, 2.6.32 et 2.6.33.
+
+ * 'pool.sh':
+   - ajout fonction 'poolExistsQuiet' pour test sans erreur.
+
+ * 'snapshot.sh':
+   - ajout fonction 'snapshotExistsQuiet' pour test sans erreur.
+
+ * tous modules: enrichissement aide principale.
+
+2010-02-18  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'install-stage1.sh' et 'install-stage1.cf.sample':
+   - la version de noyau (variable KERNEL) n'est plus obligatoire car
+     extraite de la version de patch Linux-Vserver (variable PATCH).
+   - si KERNEL est specifie sans PATCH, un noyau classique sera compile.
+
+2010-02-18  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'install-stage2.sh', 'install-stage1.cf.sample':
+   - recherche version 'debootstrap' apres resolution dependances.
+
+ * - ajout script 'create-template'
+
+2010-02-08  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'install-stage1.cf.sample':
+   - mise a jour versions pour kernel 2.6.31 et 2.6.32.
+
+ * 'install-stage2.cf.sample':
+   - ajout variables 'IP' et 'NETWORK'.
+
+ * 'install-stage2.sh':
+   - modification configuration pour rsyncd (plus d'ecrasement config
+     existante).
+   - ajout service 'hearbeat' / xinetd
+
+ * 'cluster.sh':
+   - priorite reseau/xinetd pour 'clusterHeartbeatRead'
+   - enregistrement heartbeat sous /tmp puis copie dans cache pour
+     clusterHeartbeatWrite
+
+2010-01-08  Laurent Spagnol  <laurent DOT spagnol AT univ-reims.fr>
+
+ * 'file.sh':
+   - ajout fonction 'fileExistsQuiet' pour test sans erreur.
+
+ * 'dir.sh':
+   - ajout fonction 'dirExistsQuiet' pour test sans erreur.
+
+ * 'vm.sh':
+   - ajout fonction 'vsIsRunningQuiet' pour test sans erreur.
+   - ajout fonction 'vsIsEnabledQuiet' pour test sans erreur.
+
+ * 'limit.sh' et 'attr.sh': remplacement tests 'vsIsRunning' par
+    'vsIsRunningQuiet'.
+
+2010-01-08  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'vm.sh':
+   - correction 'vmStart' et 'vmStop'
+   - creation 'vmList', 'vmState' et 'vmStats'
+
+2010-01-07  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * '/etc/init.d/vs-mount':
+   - ajout 'pvscan' et activation LVM pour séquence démarrage
+
+2009-12-09  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'start-begin.sh':
+   - modification a la volee de la version majeure du noyau presentee
+     par les vserveurs.
+
+ * 'provision.sh/provisionFinalize':
+   - Date creation VM au lieu de date creation noyau pour les vserveurs.
+
+ * Ajout 'DELLx950_config-2.6.32'
+
+2009-12-09  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'cluster.sh':
+   - correction boucle "((i=1; i <= ${#_HB_BLOCK_IDX[@]} ; i++))" dans
+     'clusterHeartbeatWrite' et 'clusterHeartbeatRead'.
+
+2009-10-30  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'cluster.sh':
+   - modification fonction 'clusterHeartbeatWrite' pour suspendre le
+     fencing pendant les sequences de demarrage et d'arret.
+
+ * 'install-stage2.sh':
+   - changement rang demarrage/arret 'vs-heartbeat' pour eviter le self
+     fencing pendant les sequences de demarrage et d'arret.
+
+ * 'cluster.cf':
+   - ajout parametre '_FENCE_SUSPEND', a decommenter si le fencing est
+     utilise.
+    
+ * 'vs-mount':
+   - ajout creation / suppression repertoires pour points de montage.
+   - suppression snapshots pendant sequences d'arret.
+
+2009-10-27  Laurent Spagnol <laurent.spagnol@univ-reims.fr>
+
+ * 'pool.sh':
+   - creation fonction 'poolGetOwner'
+   - modification 'poolCatch' pour determiner automatiquement le noeud
+     proprietaire du pool.
+
+2009-10-20  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * 'install-stage2.cf.sample':
+   - desactivation des options liees au SAN
+   - telechargement automatique du 'debootstrap_all' le plus recent
+   - ajout du paquet 'yum'
+     => TODO: 'provisionYum'
+ 
+ * 'install-stage2.sh' & 'cluster.sh/clusterHeartbeatWrite':
+   - ajout fonctionnalite de 'self-fencing'
+   - ajout fonctionalite d'election du noeud de reprise
+     ('_HEALTH', '_FENCE' et '_GRACEFULL' dans 'cluster.cf')
+	 => TODO: surveillance des pools par noeuds de reprise
+ 
+2009-10-13  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * Configuration 'logrotate' pour '/var/log/vs-tools/vs-tools.log'
+
+
+2009-10-09  Laurent Spagnol  <laurent.spagnol@univ-reims.fr>
+
+ * Ajout licence GPL
+ * Creation 'CHANGELOG'

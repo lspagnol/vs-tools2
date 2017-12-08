@@ -1,0 +1,185 @@
+#!/bin/bash
+
+#       install-stage2.cf
+#       
+#       Copyright 2009 Laurent Spagnol <laurent.spagnol@univ-reims.fr>
+#       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+
+
+#-----------------------------------------------------------------------
+# Modele de fichier de configuration pour la 2eme phase d'installation
+#-----------------------------------------------------------------------
+
+
+
+# Une valeur commentee desactive la fonctionnalite associee.
+
+# Installer les librairies i386 sur l'hote si noyau amd64
+#IA32_COMPAT=1
+
+# Desactiver IPv6 (partiellement supporte)
+#DISABLE_IPV6=1
+
+# Forcer le reboot automatique en cas de 'Kernel panic'
+#SELF_FENCING=1
+
+# Frequence de collecte des donnees du cluster (en minutes)
+# -> Utile uniquement si l'hote fait partie d'un cluster)
+#CLUSTER_COLLECTOR=1
+
+# Utilisation du demon heartbeat
+# -> Utile uniquement si l'hote fait partie d'un cluster)
+#HEARTBEAT=1
+
+# Frequence du scan des bus SCSI via (en minutes)
+# -> Utile uniquement dans un environnement SAN
+#RESCAN_SCSI=5
+
+# Prise en charge du Multipath (installation 'multipath-tools')
+# -> Utile uniquement dans un environnement SAN
+#MULTIPATH=1
+
+# Parametrage specifique du Multipath pour les SAN DataCore
+#DATACORE=1
+
+
+
+# Rien a modifier a partir d'ici                                    #
+#-----------------------------------------------------------------------
+
+
+
+# Listes des paquets Debian
+# NOTE: 'Util-Vserver' n'est pas installe automatiquement
+DEBS_required="openntpd bash ssh rsync wget lvm2 vlan ipcalc mawk sed findutils mailx\
+ binutils bc lsof liblockfile1 fping arping iptables xfsprogs\
+ bzip2 tree file yum xinetd ncftp"
+DEBS_usefull="joe less tcpdump strace deborphan parted ethtool "
+DEBS_remove="nfs-common portmap ntp"
+
+# Linux: modules noyau requis
+MODULES="iptables 8021q"
+
+# Linux: taille des blocs memoire
+_LINUX_PAGESIZE=4096
+
+# Adresse de service primaire du noeud
+# Verifier que la commande ne retourne pas 127.0.0.1 !
+# Verifier que le reseau est une classe C complete !
+# Linux: adresse IP de l'hote
+_LINUX_HOSTIP=$(hostname -i)
+_LINUX_NETWORK=$(echo $_LINUX_HOSTIP |cut -d"." -f 1-3).0/24
+
+# vs-tools: port d'ecoute xinetd pour heartbeat
+_VSTOOLS_HB_PORT=15667
+
+# Linux-Vserver: repertoire: configuration
+_VSERVERS_CONF=/etc/vservers
+
+# Linux-Vserver: repertoire: base des vserveurs
+_VSERVERS_BASE=/var/lib/vservers
+
+# Linux-Vserver: repertoire: XIDs des vserveurs en cours d'execution
+_VSERVERS_RUN=/var/run/vservers
+
+# Linux-Vserver: repertoire: cache
+_VSERVERS_CACHE=/var/cache/vservers
+
+# Linux-Vserver: fichier: compteur du XID
+_VSERVERS_XID_COUNTER=$_VSERVERS_CONF/.defaults/context.next
+
+# vs-tools: repertoire: logs
+_VSTOOLS_LOGS=/var/log/vs-tools
+
+# vs-tools: repertoire: configuration
+_VSTOOLS_CONF=/etc/vs-tools
+
+# vs-tools: repertoire: programmes
+_VSTOOLS_BIN=/usr/lib/vs-tools
+
+# vs-tools: repertoire: base des lvs / vserveurs
+_VSTOOLS_BASE=/var/lib/vs-tools
+
+# vs-tools: repertoire: cache statistiques
+_VSTOOLS_CACHE=/var/cache/vs-tools
+
+# vs-tools: repertoire: base des snapshots
+_VSTOOLS_SNAPSHOTS=/var/lib/snapshots
+
+# vs-tools: snapshots: nombre de tentatives avant abandon
+_VSTOOLS_SNAPSHOTS_ATTEMPS=5
+
+#### vs-tools: repertoire: source pour rsync
+####_VSTOOLS_RSYNC_SRC=/var/lib/vservers.src
+
+#### vs-tools: repertoire: destination pour rsync
+####_VSTOOLS_RSYNC_DST=/var/lib/vservers.dst
+
+# vs-tools: filesystems reconnus
+_VSTOOLS_KNOWN_FS_TYPES="ext3,xfs"
+
+# vs-tools: architectures processeurs reconnues
+_VSTOOLS_KNOWN_ARCHS="i386,amd64"
+
+# vs-tools: options de montage par defaut
+if grep "CONFIG_TAGGING_INTERN" /boot/config-$(uname -r) >/dev/null ; then
+	_VSTOOLS_MOUNT_OPTS="rw,tag"
+else
+	_VSTOOLS_MOUNT_OPTS="rw,tagxid"
+fi
+
+
+
+## Attributs 'Flags', 'ccapabilities' et 'bccapabilities'.
+## Les valeurs sont additives, ou soustractives lorsqu'elles sont
+## prefixees par "~". Les valeurs par defaut du systeme NE DOIVENT PAS
+## etre explicitement declarees dans la configuration des Vserveurs.
+
+## vs-tools: 'POSIX capabilities'
+## bcaps -> bcapabilities
+##
+## http://linux-vserver.org/Capabilities_and_Flags#System_capabilities_.28bcaps.29
+##
+## Valeurs systeme par defaut:
+_VSERVERS_BCAPS="chown,dac_override,dac_read_search,fowner,fsetid,kill,setgid,setuid,net_bind_service,sys_chroot,sys_ptrace,sys_boot,sys_tty_config,lease,audit_write"
+## Valeurs vs-tools par defaut:
+## -> pas de changement
+_DEFAULT_BCAPS=""
+
+## vs-tools: 'context capabilities'
+## ccaps -> ccapabilities'
+##
+## http://linux-vserver.org/Capabilities_and_Flags#Context_capabilities_.28ccaps.29
+##
+## Valeurs systeme par defaut:
+_VSERVERS_CCAPS="set_utsname,raw_icmp"
+## Valeurs vs-tools par defaut:
+## -> suppression de 'set_utsname'
+_DEFAULT_CCAPS="~set_utsname"
+
+
+## vs-tools: 'context flags'
+## cflags -> flags
+##
+## http://linux-vserver.org/Capabilities_and_Flags#Context_flags_.28cflags.29
+##
+## Valeurs systeme par defaut:
+_VSERVERS_FLAGS="fakeinit,virt_uptime,hide_netif,state_init,state_admin,sc_helper"
+## Valeurs vs-tools par defaut:
+## -> ajout de 'nproc,ulimit,virt_mem,virt_cpu,virt_load,sched_hard,sched_prio,fork_rss'.
+_DEFAULT_FLAGS="nproc,ulimit,virt_mem,virt_cpu,virt_load,sched_hard,sched_prio,fork_rss"

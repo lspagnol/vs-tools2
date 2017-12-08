@@ -1,0 +1,13 @@
+Plugin Nagios pour surveillance RAID
+------------------------------------
+
+
+** Installation **
+
+# cp check_* /usr/lib/nagios/plugins
+
+Editer /etc/nagios/nrpe.cfg, et ajouter:
+command[check_ipmi]=/usr/lib/nagios/plugins/check_ipmi
+command[check_raid]=/usr/lib/nagios/plugins/check_raid
+
+# /etc/init.d/nagios-nrpe-server restart

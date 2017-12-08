@@ -1,0 +1,45 @@
+#!/bin/bash
+
+. /usr/lib/vs-tools/functions.sh
+
+[ -z $1 ] && abort "Vserver name required"
+vmList |grep -q "$1" || abort "Vserver not found ($1)"
+vmIsRunning $1 || exit 1
+
+BASE=${_VSTOOLS_BASE=}/$(vmGetPoolName $1)
+DIRD=$(pwd)
+
+echo "* Cleaning apt cache..."
+vserver $1 exec apt-get clean
+
+echo "* Stopping vserver..."
+vserver $1 stop
+
+echo "* Please wait..."
+while [ "$(lsof |grep ^sleep |grep $BASE/$1$)" ] ; do
+	sleep 1
+done
+
+echo "* Building template..."
+echo "SRC: $(du -hs $BASE/$1)"
+cd $BASE/$1
+
+find var/log/ -type f > /tmp/exclude.list
+cat << EOF >> /tmp/exclude.list
+populate.log
+root/.bash_history
+etc/ssh/ssh_host_*
+tmp/*
+var/tmp/*
+EOF
+
+tar --exclude-from=/tmp/exclude.list -czf ${DIRD}/$1.tgz *
+rm /tmp/exclude.list
+
+echo "DST: $(du -h ${DIRD}/$1.tgz)"
+echo "* Starting vserver..."
+vserver $1 start
+
+echo
+echo "Done ;) !"
+echo

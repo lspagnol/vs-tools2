@@ -1,0 +1,17 @@
+set_utsname
+set_rlimit
+raw_icmp
+syslog
+secure_mount
+secure_remount
+binary_mount
+quota_ctl
+admin_mapper
+admin_cloop
+kthread
+mount
+remount
+icmp
+ping
+utsname
+rlimit

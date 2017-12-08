@@ -1,0 +1,100 @@
+#!/bin/bash
+
+#       vs-kickoff
+#       
+#       Copyright 2010 Laurent Spagnol <laurent DOT spagnol AT univ-reims DOT fr>
+#       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+
+
+if [ -z "$1" ] ; then
+	echo "$0 <from node> <to node>"
+	exit 1
+fi
+
+if [ "$1" == "help" ] ; then cat<<EOF
+
+NAME
+
+	vs-kickoff
+
+SYNOPSIS
+
+	vs-kickoff <orig node> <dest node>
+
+FUNCTION
+
+	Disable all pools on <orig node>, then enable these pools on
+	<dest node>. Only running vservers will be startded on <dest node>.
+	This command may run without libraries on localhost.
+
+EOF
+exit 1
+
+fi
+
+src=$1
+dst=$2
+
+[ -z $dst ] || [ -z $src ] && { echo "value missing" ; exit 1 ; }
+
+for node in $dst $src ; do
+	[ -z $node ] && { echo "value missing" ; exit 1 ; }
+	ssh -o "NumberOfPasswordPrompts 0" -o "StrictHostKeyChecking yes" $node pwd 2>/dev/null >/dev/null || { echo "remote node is unavailable ($node)" ; exit 1 ; }
+done
+
+declare -a vm
+declare -a lv
+declare -a run
+
+POOLS=$(ssh $src "lvs --noheadings -o lv_attr,tags,vg_name,lv_name |awk '{print \$1\" \"\$2\" \"\$3\"/\"\$4}' |grep \"^-wi-ao \$(hostname -s)\" |awk '{print \$3}'")
+
+for pool in $POOLS ; do
+	VSERVERS=$(ssh $src vs-tools poolVserversList $pool)
+	i=0
+	for vserver in $VSERVERS ; do
+		vm[$i]=$vserver
+		lv[$i]=$pool
+		echo -n "Vserver '$vserver' on node '$src' is "
+		if ssh $src "test -f /var/run/vservers/$vserver" ; then
+			run[$i]=1
+			echo -n "running, stopping it, "
+			ssh $src "vserver $vserver stop 2>/dev/null >/dev/null </dev/null"
+			echo "done."
+		else
+			run[$i]=0
+			echo "stopped."
+		fi
+		(( i++ ))
+	done
+	echo -n "Disabling pool '$pool' on node '$src', "
+	ssh $src "vs-tools poolDisable $pool"
+	echo "done."
+	echo -n "Enabling pool '$pool' on node '$dst', "
+	ssh $dst "vs-tools poolCatch $pool"
+	ssh $dst "vs-tools poolEnable $pool"
+	echo "done."
+	i=0
+	for vserver in $VSERVERS ; do
+		if [ ${run[$i]} -eq 1 ] ; then
+			echo -n "Starting '$vserver' on node '$dst', "
+			ssh $dst "vserver $vserver start 2>/dev/null >/dev/null </dev/null"
+			echo "done."
+		fi
+		(( i++ ))
+	done
+done

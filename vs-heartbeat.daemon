@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. /usr/lib/vs-tools/functions.sh
+
+echo $$ > /var/run/vs-heartbeat.daemon
+
+while true ; do
+	clusterHeartbeatWrite
+	sleep 2
+done

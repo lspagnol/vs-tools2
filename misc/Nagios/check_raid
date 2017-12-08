@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo -n "RAID "
+
+result=$(/usr/local/sbin/raidstate 2>/dev/null |grep ^_degraded: |cut -d: -f2)
+
+if [ $? -eq 0 ] ; then
+	echo "ok"
+else
+	echo "CRITICAL - $result volume(s) on error"
+fi

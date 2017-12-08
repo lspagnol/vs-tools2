@@ -1,0 +1,24 @@
+#!/bin/bash
+
+k_default=2.6.32
+u_default=0.30.216
+
+dpkg -l curl 2>/dev/null |grep -q ^ii || apt-get install -y curl 2>/dev/null >/dev/null
+
+case $1 in
+	patch)
+		read -p "Kernel version ('*' for all, default is '$k_default'): " k
+		k=${k:-$k_default}
+		[ "$k" = "*" ] && unset k
+		curl -s http://vserver.13thfloor.at/Experimental/ |grep "patch-" |sed -e "s/^.*patch-/patch-/g ; s/\.diff.*$/\.diff/g" |grep "^patch-$k"
+	;;
+	util)
+		read -p "Util-Vserver version ('*' for all, default is '$u_default'): " u
+		u=${u:-$u_default}
+		[ "$u" = "*" ] && unset u
+		curl -s http://people.linux-vserver.org/~dhozac/t/uv-testing/ |grep "util-" |sed -e "s/^.*util-/util-/g ; s/\.bz2.*$/\.bz2/g" |grep "^util-vserver-$u"
+	;;
+	*)
+		echo "Usage: $0 <patch|util>"
+	;;
+esac

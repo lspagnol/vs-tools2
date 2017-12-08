@@ -1,0 +1,3 @@
+#!/bin/bash
+lvs --noheadings -o vg_name,lv_name,vg_attr,lv_attr,lv_size,lv_tags $1 \
+ |awk '{print "Volume....: "$1"/"$2"\nVG Attr...: "$3"\nLV Attr...: "$4"\nLV Size...: "$5"\nLV Tags...: "$6"\n"}'

@@ -1,0 +1,97 @@
+#!/bin/bash
+
+#       install-stage1.cf
+#       
+#       Copyright 2009 Laurent Spagnol <laurent.spagnol@univ-reims.fr>
+#       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+
+
+#-----------------------------------------------------------------------
+# Modele de fichier de configuration pour la 1ere phase d'installation
+#-----------------------------------------------------------------------
+
+
+
+# Telechargement, compilation et installation:
+# - noyau 'Linux-Vserver'
+# - Util-Vserver
+# - Htop (avec prise en charge XID)
+
+
+
+# Racine des Vserveurs
+#-----------------------------------------------------------------------
+
+#VROOTDIR=/vservers
+VROOTDIR=/var/lib/vservers
+
+
+
+# Versions des sources
+#-----------------------------------------------------------------------
+
+# Une variable nulle desactive le telechargement et la compilation
+# La variable KERNEL n'est pas indispensable, elle sera extraite de la
+# version du patch Linux-Vserver.
+
+# Si KERNEL est specifie sans PATCH, un noyau classique sera compile et
+# installe.
+#KERNEL=linux-2.6.32.9.tar.bz2
+
+# Noyau (2.6.29)
+#PATCH=patch-2.6.29.6-vs2.3.0.36.14.diff
+#UTIL=util-vserver-0.30.216-pre2841.tar.bz2
+
+# Noyau (2.6.31)
+#PATCH=patch-2.6.31.13-vs2.3.0.36.28.2.diff
+#UTIL=util-vserver-0.30.216-pre2864.tar.bz2
+
+# Noyau (2.6.32)
+PATCH=patch-2.6.32.28-vs2.3.0.36.29.6.diff
+UTIL=util-vserver-0.30.216-pre2883.tar.bz2
+
+# Noyau (2.6.36)
+#PATCH=patch-2.6.36.4-vs2.3.0.36.39.diff
+#UTIL=util-vserver-0.30.216-pre2955.tar.bz2
+
+# Htop
+HTOP=htop-0.8.3.tar.gz
+
+
+
+# Options de compilation
+#-----------------------------------------------------------------------
+
+UTIL_CONFIGURE="--prefix= --exec-prefix=/usr\
+ --with-vrootdir=$VROOTDIR"
+HTOP_CONFIGURE="--prefix=/usr --enable-vserver"
+
+# Paquets Debian obligatoires pour compilation
+
+DEBS="bzip2 build-essential libncurses5-dev pkg-config libnss3-dev\
+ dietlibc-dev wget vlan"
+
+
+
+# URLs telechargement
+#-----------------------------------------------------------------------
+
+KERNEL_BASE_URL="http://www.kernel.org/pub/linux/kernel/v2.6"
+PATCH_BASE_URL="http://vserver.13thfloor.at/Experimental"
+UTIL_BASE_URL="http://people.linux-vserver.org/~dhozac/t/uv-testing"
+HTOP_BASE_URL="http://freefr.dl.sourceforge.net/sourceforge/htop"

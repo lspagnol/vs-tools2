@@ -1,0 +1,937 @@
+*********************************************
+
+LSI Logic MegaRAID Linux MegaCLI Release 
+
+*********************************************
+
+Release Date: 09/24/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8304ELP
+MegaRAID SAS 8300XLP
+MegaRAID SAS 8708EM2
+MegaRAID SAS 8880EM2
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 09/24/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.39
+Previous Versoin	1.01.35
+
+Enhancements and Bug Fixes
+==========================
+LSID100066912 (CO) CR_Ref# LSID100058320: New DOS tool to Update HDD & ESM FW 
+LSID100071181 (CO) CO for CR 71177. Remove AdpDiag from NW CLI 
+LSID100071946 (CO) MegaCLI enhancement to be able to set MUX to Auto
+LSID100067825 (CO) CR_Ref# LSID100063325: Enhanced Import User experience
+LSID100069423 (DFCT) SCO CLI rebuild progress is not displayed with the "progdsply" command 
+LSID100070632 (DFCT) Netware CLI gives message that "failed to get CP controller object" 
+LSID100072083 (DFCT) MegaCli 64 crashed when using the 'adpsetverify' command 
+LSID100069408 (DFCT) CLI command for Enclosure options do not work with LSI enclosures. 
+LSID100069152 (DFCT) Netware server carshes when you run megacli -cfgforeign dsply command. 
+LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+LSID100069151 (DFCT) CLI help command hangs the system. 
+LSID100069611 (DFCT) Wildcard encl message needs to be modified 
+LSID100069406 (DFCT) There are some commands missing in Help file
+LSID100069477 (DFCT) DOS Megacli hangs when listing phy disks over 38 disks using the pdlist command 
+LSID100069591 (DFCT) Error messages when adding LD (where PD doesn't exists) 
+LSID100069610 (DFCT) Spelling of wildcard needs to be fixed 
+LSID100069592 (DFCT) Enclosure device id 0xFFFF need to use macro 
+LSID100069604 (DFCT) The wildcard check should be in a separate function 
+LSID100069594 (DFCT) For multiple encl and encl with DA should show different error msg 
+LSID100069970 (DFCT) Wildcard usage is not mentioned in help 
+LSID100069405 (DFCT) CLI command to get CCerror log does not work. 
+LSID100069605 (DFCT) The error message with :SLOT device is not proper 
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+***********************
+Previous Releases
+***********************
+
+
+Release Date: 07/26/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8704ELP
+MegaRAID SAS 8708ELP
+MegaRAID SAS 8888ELP
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8304ELP
+MegaRAID SAS 8300XLP
+MegaRAID SAS 8208ELP
+MegaRAID SAS 8208XLP
+MegaRAID SAS 8204ELP
+MegaRAID SAS 8204XLP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 07/26/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.35
+Previous Versoin	1.01.33
+
+Enhancements and Bug Fixes
+==========================
+LSID100066912 (CO) CR_Ref# LSID100058320: New DOS tool to Update HDD & ESM FW 
+LSID100065929 (CO) CR_Ref# LSID100054244: request "Scheduled Check Consistency" feature 
+LSID100066101 (CO) CR_Ref# LSID100059847: Add feature to pull CCLog for SAS 
+LSID100066449 (DFCT) Netware CLI crashes the system with multiple controller. 
+LSID100067528 (DFCT) "Segmentation fault" error is occuring on Linux CLI commands 
+LSID100067548 (DFCT) NW 6.5 - Get same info from PDLIST -a0 and -a1 
+LSID100066878 (DFCT) SWR5 - MegaDCLI - Numerous corrections needed in help file 
+LSID100068004 (DFCT) "C Shell" console freezes on an attempt to check operation (Init/CC/Rebuild) progress updation. 
+LSID100068005 (DFCT) System (SCO) crashes while attempting to install MegaCLI using "pkgadd" command. 
+LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+LSID100060950 (DFCT) Add RaidCard default constructor in protected area. Same applies for derived class. 
+LSID100062897 (DFCT) It is advisable to change all the destructor as virtual 
+LSID100069210 (DFCT) MegaSCU - Dump of adapter settings does NOT match MFC data through debugger 
+LSID100069151 (DFCT) CLI help command hangs the system. 
+LSID100067790 (DFCT) MegaSCU.exe -AdpGetConnectorMode -ConnectorAll -aALL Fails 
+LSID100067947 (DFCT) NW 6.5 - Server Abends while attempting to get phyinfo 
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+
+
+Release Date: 06/26/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8704ELP
+MegaRAID SAS 8708ELP
+MegaRAID SAS 8888ELP
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8304ELP
+MegaRAID SAS 8300XLP
+MegaRAID SAS 8208ELP
+MegaRAID SAS 8208XLP
+MegaRAID SAS 8204ELP
+MegaRAID SAS 8204XLP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 06/26/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.33
+Previous Versoin	1.01.27
+
+Enhancements and Bug Fixes
+==========================
+LSID100065960 (CO) CR_Ref# LSID100062979: 1078, All, RAID5 feature enable/disable via MFC 
+LSID100065985 (CO) CR_Ref# LSID100063324: Enhanced import preview should show rebuild info 
+LSID100065972 (CO) CR_Ref# LSID100063007: Abort CC on detecting an error 
+LSID100065929 (CO) CR_Ref# LSID100054244: request "Scheduled Check Consistency" feature 
+LSID100064309 (CO) Add option in CLI to display phy err counters 
+LSID100065608 (CO) CR_Ref# LSID100065595: Command line option to change controller mapping 
+LSID100062169 (DFCT) MegaDCLI fails to set desired time 
+LSID100065556 (DFCT) disk coercion can’t be set by CoercionMode command 
+LSID100066047 (DFCT) SWR5\Phase 4\MegaDCli\1.00.04\Adapter factory default set reports successful even though RAID configuration is present. 
+LSID100066324 (DFCT) SWR5\ICH8R\MEGADCLI\1.00.04\MegaDCLI causes internal stack overflow error 
+LSID100066449 (DFCT) Netware CLI crashes the system with multiple controller. 
+LSID100067528 (DFCT) "Segmentation fault" error is occuring on Linux CLI commands 
+LSID100067548 (DFCT) NW 6.5 - Get same info from PDLIST -a0 and -a1 
+LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+LSID100065256 (DFCT) Customer cannot update 1078 ROMB that has empty flash part. 
+LSID100064970 (DFCT) (#10625.1) Mode 0 Flash
+LSID100065546 (DFCT) In adpallinfo revertible HS should be upper case Revertible HS 
+LSID100065582 (DFCT) CLI shows the bbu designinfo manufacturing date with an odd format 
+LSID100065708 (DFCT) CLI - does not label controllers' output 
+LSID100064617 (DFCT) Unexpected ErrorLevel from MegaCLI 
+LSID100066342 (DFCT) MEGASCU/OEM prints debug mesages while running adpsettigs command. 
+LSID100065907 (DFCT) SAS\CLI fails to start reconstruction on linux. 
+LSID100065806 (DFCT) MegaCli -adpallinfo fails for LSI 8344ELP controller when SoftwareRAID is installed & optionROM scan for controller is disabled 
+LSID100064620 (DFCT) MegaCLI showing drives out of order unexpectedly. 
+LSID100066687 (DFCT) 2-1.00.30-0.i386.rpm cannot be install 
+LSID100066771 (DFCT) No option to clear NVRAM and/or available option doesn't work. 
+LSID100066192 (DFCT) Battery Type is showing wrong battery name. 
+LSID100064273 (DFCT) Checkconsistency and Init Abort option didn’t retrieve proper VD stat. 
+LSID100066690 (DFCT) FW goes to momtask on diagnostic on battery test. 
+LSID100065298 (DFCT) SAS/CLI Cli options to change bios settings SOE and BE do not work. 
+LSID100064482 (DFCT) Netware/CLI shows message that "press any key to close screen" after each run. 
+LSID100064484 (DFCT) Netware\CLi has memory leak issue. 
+LSID100064833 (DFCT) NW 6.5 - Server hangs when using -showprog or - 
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+
+
+Release Date: 04/18/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8704ELP
+MegaRAID SAS 8708ELP
+MegaRAID SAS 8888ELP
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8304ELP
+MegaRAID SAS 8300XLP
+MegaRAID SAS 8208ELP
+MegaRAID SAS 8208XLP
+MegaRAID SAS 8204ELP
+MegaRAID SAS 8204XLP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 04/18/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.27
+Previous Versoin	1.01.26
+
+Enhancements and Bug Fixes
+==========================
+
+LSID100064309 (CO) Add option in CLI to display phy err counters 
+LSID100063268 (CO) CR_Ref# LSID100063095: Create a x64 version of SAS CLI 
+LSID100064821 (CO) CR_Ref# LSID100060464: MegaCLI -adpfwflash depends on firmware version 
+LSID100064822 (CO) CR_Ref# LSID100062662: Electronic serial number for 1078 RAID modules 
+LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+LSID100062966 (DFCT) Megacli displays direct attached drives with an incorrect enclosure ID during rebuild progress 
+LSID100063396 (DFCT) MegCLI wrong install destination 
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	CLI options for BE and SOE for bypass on error and Stop on error do not work.
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+***********************
+Previous Releases
+***********************
+
+Release Date: 02/17/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8704ELP
+MegaRAID SAS 8708ELP
+MegaRAID SAS 8888ELP
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8304ELP
+MegaRAID SAS 8300XLP
+MegaRAID SAS 8208ELP
+MegaRAID SAS 8208XLP
+MegaRAID SAS 8204ELP
+MegaRAID SAS 8204XLP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 02/17/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.26
+Previous Versoin	1.01.24
+
+Enhancements and Bug Fixes
+==========================
+
+1. 	LSID100064309 (CO) Add option in CLI to display phy err counters 
+2. 	LSID100063268 (CO) CR_Ref# LSID100063095: Create a x64 version of SAS CLI 
+3.	LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+4.	LSID100062847 (DFCT) Solaris CLI gives wrong exit message when command fails. 
+5.	LSID100063396 (DFCT) MegCLI wrong install destination 
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+
+*******************************************
+
+Release Date: 02/15/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.24
+Previous Versoin	1.01.22
+
+Enhancements and Bug Fixes
+==========================
+
+LSID100059687 (CO) CO to implement CR#56859 - Ini file for Hydra
+LSID100061279 (DFCT) The generated .ini file is just the skeleton and there is no comment provided for each option to describe the meaning of it. 
+LSID100062638 (DFCT) Cli - MegaSCU -h has misspelled "directly" 
+LSID100062484 (DFCT) Log files for MegaCli should not be created without user attention. 
+LSID100062710 (DFCT) The CMDTool2 help file does not reflect the –sz option on cfgspanadd 
+LSID100061565 (DFCT) CLI does not work in certain windows enviroment 
+LSID100064262 (DFCT) SAS/CLI for windows 64 displays wrong version info 
+LSID100061790 (DFCT) SAS - CLI - BBU Capacity Information 
+LSID100035416 (DFCT) SAS/SCU Megafl -adpm0flash -f filename does not flash the contoller 
+LSID100041894 (DFCT) SAS/CLI/SCU Linux if you type wrong command it gives segmentation fault. 
+LSID100041933 (DFCT) SWR / MegaCli / MegaCli commands -ShowProg, -ProgDsply, -Start, and -Enbl displays message that MegaCli encountered problem 
+LSID100042133 (DFCT) SAS/SCU when any progress starts and you do progdsply before it has reached one percent mark it shows 100 percent. 
+LSID100042327 (DFCT) Linux MegaSCU can't create a R10 array in certain drive order 
+LSID100036143 (DFCT) SAS/SCU for multiple controllers in the system the order of controllers are diffrent form storelib & MSM 
+LSID100042791 (DFCT) SAS/SCU DOS with soem commands in does you get error message saying that "System is out of memory" but command works. 
+LSID100043181 (DFCT) MegaCLI cannot always get complete NVRAM Log 
+LSID100042569 (DFCT) Linux MegaSCU can't access SWR controller and HWR controller at the same time 
+LSID100043439 (DFCT) MegaSCU uses sector number for device id in event log when a double media error is found during CC 
+LSID100043539 (DFCT) SAS/SCU/WIndows MegaSCu -adpbbucmd -a0 / MegaScu -adpbbucmd -getbbustatus -a0 gives memory errors 
+LSID100043692 (DFCT) SAS/SCU/WIndows MegaSCu -adpbbucmd -a0 / MegaScu -adpbbucmd -getbbustatus -a0 gives memory errors 
+LSID100043540 (DFCT) SAS/SCU/LogR With any adpeventlog command number of total events are olways lessthen or equal to 128. 
+LSID100043576 (DFCT) SAS/SCU Megascu -adpbbucmd -setbbuproperties -f -a0 does not set the values for BBU. 
+LSID100044019 (DFCT) MegaSCU NVRAM clear does not work. 
+LSID100044012 (DFCT) LSI SAS - MegaSCU fails when flashing FW from inside of Sles 9 sp2 
+LSID100044433 (DFCT) LSI SAS - MegaSCU fails when flashing FW from inside of Sles 9 sp2 
+LSID100044902 (DFCT) LSI SAS - MegaSCU - -AdpSettings command always reports OEM wrong when writiing out ini file 
+LSID100044622 (DFCT) pdoffline does not display a response to the command 
+LSID100044280 (DFCT) SWR5:Megascu:Doesn't show the adpater no for the respected drives 
+LSID100044847 (DFCT) Megascu progres indicator giving incorrect info about the ongoing CC . 
+LSID100033135 (DFCT) SAS/SCU/Megascu -fwtermlog -a0 dors not have command to check to fwtermlog status. 
+LSID100049899 (DFCT) Win SCU FwTermLog function fails to return information: 
+LSID100033136 (DFCT) SAS/SCU There is no such command to find out Background Init. info for the LD. 
+LSID100057506 (DFCT) 1068/OS Netware 6.5/MegaCLI Test_Version/When viewing any progress operation the screen will flip 
+LSID100058796 (DFCT) SWR5 ICH7R Phase II/RHEL AS 3.0 x86/06.13.0913.2006/ MegaCli reports an error when displaying controller information 
+LSID100062062 (DFCT) Creating partial logical drives fail 
+
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+
+
+
+
+Release Date: 01/10/07
+===================
+
+Supported Controllers
+==================
+
+MegaRAID SAS 84016E
+MegaRAID SAS 8704ELP
+MegaRAID SAS 8708ELP
+MegaRAID SAS 8888ELP
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8300XLP
+MegaRAID SATA 300-8ELP
+MegaRAID SATA 300-4ELP
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 01/10/2007
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.22
+Previous Versoin	1.01.09
+
+Enhancements and Bug Fixes
+==========================
+
+LSID100056934 (CO) SAS Mux support in CLI 
+LSID100058453 (CO) Common config module : RAIDLib support 
+LSID100050917 (CO) This request from applies to WebBIOS, GAM, and MegaCLI 
+LSID100059579 (DFCT) partial size spanned array works but you can not specify any other option while creating the array. 
+LSID100059665 (DFCT) MegCLI wrong install destination 
+LSID100058268 (DFCT) SAS/1078 CLI need to change error message in case PD is not there and you try to create spanned array. 
+LSID100058857 (DFCT) LDInfo should display a Dedicated HSp affiliated with the VD 
+LSID100060618 (DFCT) zeroBasedEnclEnumeration in not supported in CLI AdpSetting and AdpSetVerify 
+LSID100060555 (DFCT) 1078 Flash recovery tool 
+LSID100060785 (DFCT) M0flash function cannot flash boot block to 1078 controller 
+LSID100060147 (DFCT) Unable to flash 1078 controller with 4MB FW image 
+LSID100057421 (DFCT) MegaSCU v1.01.12 (BU) fails to clear NVRAM and returns BAR scan error 
+LSID100060633 (DFCT) Log files for MegaCli should not be created without user attention. 
+LSID100062484 (DFCT) Log files for MegaCli should not be created without user attention. 
+LSID100060841 (DFCT) Unable to create all physical disk as RAID 0 using CLI 
+LSID100060632 (DFCT) MegaCLI cannot change Stop On Error BIOS setting properly 
+LSID100061168 (DFCT) CLI commands for configuring LD and spaned LD does not have same syntex. 
+LSID100061165 (DFCT) CLI does not dispaly any message when you mark or replace PD missing. 
+LSID100061516 (DFCT) In AdpBiosCp::process for TOKEN_BYPASSERROR the message is wrong 
+LSID100061276 (DFCT) LdAddCp:: createUserPdList() check !NULL after getPdListList() 
+LSID100061277 (DFCT) In CmdToolManager::process() disable file out not in error path 
+LSID100052282 (DFCT) LDs Init progress display and Time Elps are wrong. 
+LSID100054206 (DFCT) Typo on factory utility when displaying battery information 
+LSID100054583 (DFCT) Windows MegaSCU -v displays old version 
+LSID100055650 (DFCT) SAS/SCU/DOS/WIndows/Linux you can not configure raid level 
+LSID100054985 (DFCT) MegaCLI - cannot set write policy to "BadBBU" in MegaCLI 
+LSID100055949 (DFCT) Megascu gives invalid error message when attempting to rebuild a disk on a Failed VD (negative test) 
+LSID100054597 (DFCT) MegaDCli shows CTRL-R instead of CTRL-M and does not display version 
+LSID100056077 (DFCT) SWR-5 / Phase 1+ Refresh / CMDTOOL2 / -aall option not reporting proper error messages with multiple controllers 
+LSID100054601 (DFCT) MegaDCli -EnDskCache -L0 -a0 errorlevel should not be 0 
+LSID100054578 (DFCT) Older version of firmware can be loaded without options 
+LSID100056695 (DFCT) SAS/1078/CLI windows does not display all the information in decimal some info is in hex values. 
+LSID100056720 (DFCT) Megacli sleep command does not return confirmation that it is issued or is working 
+LSID100056723 (DFCT) Megacli reports no error message when setting bbu properties from file that does not exist 
+LSID100057186 (DFCT) SAS - CLI - BBU Capacity Information missing two data 
+LSID100056141 (DFCT) CLI output of "pdrbld showprog" includes ê22 characters 
+LSID100057867 (DFCT) MegaOEM/Linux does not install correctly. 
+LSID100057869 (DFCT) SAS/MegaOEM windows gives a error that failed to read the file. 
+LSID100035416 (DFCT) SAS/SCU Megafl -adpm0flash -f filename does not flash the contoller 
+LSID100041894 (DFCT) SAS/CLI/SCU Linux if you type wrong command it gives sagenetation fault. 
+LSID100041933 (DFCT) SWR / MegaCli / MegaCli commands -ShowProg, -ProgDsply, -Start, and -Enbl displays message that MegaCli encountered problem 
+LSID100042133 (DFCT) SAS/SCU when any progress starts and you do progdsply before it has reached one percent mark it shows 100 percent. 
+LSID100042327 (DFCT) Linux MegaSCU can't create a R10 array in certain drive order 
+LSID100036143 (DFCT) SAS/SCU for multiple controllers in the system the order of controllers are diffrent form storelib & MSM 
+LSID100042791 (DFCT) SAS/SCU DOS with soem commands in does you get error message saying that "System is out of memory" but command works. 
+LSID100043181 (DFCT) MegaCLI cannot always get complete NVRAM Log 
+LSID100042569 (DFCT) Linux MegaSCU can't access SWR controller and HWR controller at the same time 
+LSID100043439 (DFCT) MegaSCU uses sector number for device id in event log when a double media error is found during CC 
+LSID100043539 (DFCT) SAS/SCU/WIndows MegaSCu -adpbbucmd -a0 / MegaScu -adpbbucmd -getbbustatus -a0 gives memory errors 
+LSID100043692 (DFCT) SAS/SCU/WIndows MegaSCu -adpbbucmd -a0 / MegaScu -adpbbucmd -getbbustatus -a0 gives memory errors 
+LSID100043540 (DFCT) SAS/SCU/LogR With any adpeventlog command number of total events are olways lessthen or equal to 128. 
+LSID100043576 (DFCT) SAS/SCU Megascu -adpbbucmd -setbbuproperties -f -a0 does not set the values for BBU. 
+LSID100044019 (DFCT) MegaSCU NVRAM clear does not work. 
+LSID100044012 (DFCT) LSI SAS - MegaSCU fails when flashing FW from inside of Sles 9 sp2 
+LSID100044433 (DFCT) LSI SAS - MegaSCU fails when flashing FW from inside of Sles 9 sp2 
+LSID100044902 (DFCT) LSI SAS - MegaSCU - -AdpSettings command always reports OEM as Dell when writiing out ini file 
+LSID100044622 (DFCT) pdoffline does not display a response to the command 
+LSID100044280 (DFCT) SWR5:Megascu:Doesn't show the adpater no for the respected drives 
+LSID100044847 (DFCT) Megascu progres indicator giving incorrect info about the ongoing CC . 
+LSID100033135 (DFCT) SAS/SCU/Megascu -fwtermlog -a0 dors not have command to check to fwtermlog status. 
+LSID100049899 (DFCT) Win SCU FwTermLog function fails to return information: 
+LSID100033136 (DFCT) SAS/SCU There is no such command to find out Background Init. info for the LD. 
+
+
+Known Restrictions
+================
+1.	NONE
+
+
+Known Bugs
+===========
+1.	NONE
+
+
+Installation Commands: 
+===================
+1.	Install the rpm file and run megacli from the terminal window.
+2.	Use -h option to see help menu.
+
+
+
+************************************
+
+Release Date: 06/30/06
+===================
+
+Supported Controllers
+==================
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+MegaRAID SAS 8300XLP
+MegaRAID SATA 300-8ELP
+MegaRAID SATA 300-4ELP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 06/30/2006
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.01.09
+Previous Version	1.00.07
+
+Bug Fixes and Enhancements
+==========================
+
+1. Updated "-adpAllInfo" command to display all the controller information available.
+
+2. CLI-Change PR settings to 1 hour increments.
+
+3. LSID100052282: LDs Init progress display and Time Elps are wrong. 
+
+4. MegaCLI -adpsetverify option not working
+
+5. MegaCLI-Provide verify option for MFC Data
+
+6. MegaCLI doesn't abort showing rebuild progress of a failed drive when 
+   -progdsply is running on multiple drives.
+
+7. MegaCLI doesn't return an error on 'cfgldadd' option if using drives 
+   that are already part of an array
+
+8. MegaCli can't list PD  and LD count for all controllers.
+
+9. Megacli fails to enable autorebuild for multiple adapters if 
+   adapter0 is already enabled.
+
+10. MegaCli does not reply "Configured the Adapter" when creating a 
+   spanned array.
+
+11. MegaCli will not create an 8th logical drive on RAID 5. 
+
+12. Segmentation fault happens when configure using foreign drives.
+
+13. Set Default Write policy based on RAID level when creating/adding configurations. 
+
+14. megacli does not show result when pdhsp -set command is run.
+   
+15. With megacli when you do -a0,1 or l0,1 out put displays ",".
+
+16. "mm" is displayed at the end of the adpsetprop message.
+
+17. Disallows further configuration on free space if no un-configured drive exists.
+
+18. Support RAID-6(RAID-60) configuration if controller supports.
+
+19. megacli -pdprprmv -undo fails to rundo remove on multiple 
+   drives with enclosure. 
+
+20. Any option associated with Alarm is not working other than AlarmEnbl. 
+
+21. MegaCLI should return HDD Serial Number
+
+22. MegaCLI needs to implement function to stop blinking after 
+   locate of PD. Added a new option to stop pdLocate.
+   Syntax:
+     MegaCli -PdLocate {[Start]|Stop} -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL
+
+23. Provided "-getLatest" option to get the last n events.
+   Syntax:
+	MegaCli -adpEventlog -getLatest N -f <filename> -aN|-a0,1,2|-aALL
+   
+24. MegaCLI should have option to stop BGI
+
+25. MegCli -ldbi -getsetting shows wrong output
+
+26. Added -AdpSetVerify option. This option takes an ini file, which specifies 
+   the desired controller settings, and compares to the actual setting on the 
+   controller. Reports the difference, if any, to the console.
+   Syntax:
+   MegaCli -adpSetVerify -f fileName -aN|-a0,1,2|-aALL
+
+27. Support SAS ZCR controllers.
+
+28. Added -PdMakeGood option. This option will change drive in Unconfigured-Bad
+   state to unconfigured-good state.
+   Syntax:
+   MegaCli -pdMakeGood -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL
+
+29. MegaCli doesn't exit progdsply option during rebuild when 
+   rebuilding drive is disconnected. 
+
+30. WritePolicy of BIOS is different from WritePolicy of MegaCLI.
+
+31. Not getting the events for both controller by doing -aall
+
+32. There is no such command to find out Background Init. info for the LD.
+
+33. MegaCLI should have option to stop BGI
+
+34. MegaCLI needs the config function -EachDskRaid0
+   CfgEachdskRaid0 option is implemented in this version. This command will configure 
+   each unconfigured-good drive to a RAID0 virtual drive.
+   Syntax:
+   MegaCli -CfgEachDskRaid0 [WT|WB] [NORA|RA|ADRA] [Direct|Cached]
+         [-strpszM] -aN |-a0,1,2|-aALL
+
+35. Returns number of objects to the system. This is effective to adpCount, LdGetNum
+   and PdGetNum options. Earlier, application returns 0 to the system.
+
+36. MegaCLI -fwtermlog -a0 does not have command to check to 
+   fwtermlog (BBU setting) status.
+
+37. There is no such command to find out Background Init. info 
+   for the LD.
+
+38. pdoffline does not display a response to the command
+
+39. MegaCLI progres indicator giving incorrect info about the ongoing CC.
+
+40. Win CLI FwTermLog function fails to return information.
+
+
+Known Restrictions: 
+================
+
+1.	NONE
+
+Known Bugs: 
+===========
+
+1.	NONE
+
+Installation Commands: 
+===================
+Install the rpm file and run megacli from the terminal window.
+
+
+Supported options in MegaCli
+==============================
+
+MegaCli -v 
+MegaCli -help|-h|? 
+MegaCli -AdpSetProp {CacheFlushInterval -val}|{ RebuildRate -val} 
+    |{PatrolReadRate -val}|{BgiRate -val}|{CCRate -val} 
+    |{ReconRate -val}|{SpinupDriveCount -val}|{SpinupDelay -val} 
+    |{CoercionMode -val}|{ClusterEnable -val}|{PredFailPollInterval -val} 
+    |{BatWarnDsbl -val} |{EccBucketSize -val} | {EccBucketLeakRate -val} 
+    | AlarmEnbl | AlarmDsbl | AlarmSilence -aN|-a0,1,2|-aALL 
+MegaCli -AdpGetProp CacheFlush | RebuildRate | PatrolReadRate | BgiRate 
+    | CCRate | ReconRate | SpinupDriveCount | SpinupDelay | CoercionMode 
+    | PredFailPollInterval | EccBucketSize | EccBucketLeakRate | EccBucketCount
+    | ClusterEnable | BatWarnDsbl | AlarmDsply -aN|-a0,1,2|-aALL 
+MegaCli -AdpAllInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpGetTime -aN|-a0,1,2|-aALL  
+MegaCli -AdpSetTime yyyymmdd hh:mm:ss -aN   
+MegaCli -AdpBIOS {-Enbl [SOE|BE]}|-Dsbl|-Dsply -aN|-a0,1,2|-aALL 
+MegaCli -AdpBootDrive {-Set -Lx}|-Get -aN|-a0,1,2|-aALL 
+MegaCli -AdpAutoRbld -Enbl|-Dsbl|-Dsply -aN|-a0,1,2|-aALL
+MegaCli -AdpCacheFlush -aN|-a0,1,2|-aALL
+MegaCli -AdpPR -Dsbl|EnblAuto|EnblMan|Start|Stop|Info|{SetDelay Val} 
+         -aN|-a0,1,2|-aALL
+MegaCli -FwTermLog -BBUoff|BBUoffTemp|BBUon|BBUGet|Dsply|Clear -aN|-a0,1,2|-aALL
+MegaCli -AdpDiag [val] -aN|-a0,1,2|-aALL
+          val - Time in second.
+MegaCli -AdpBatTest -aN|-a0,1,2|-aALL
+MegaCli -PDList -aN|-a0,1,2|-aALL 
+MegaCli -PDGetNum -aN|-a0,1,2|-aALL 
+MegaCli -pdInfo -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PDOnline  -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PDOffline -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PDHSP {-Set [-Dedicated [-ArrayN|-Array0,1,2...]] [-EnclAffinity] [-nonRevertible]}
+         |-Rmv -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL
+MegaCli -PDRbld -Start|-Stop|-ShowProg |-ProgDsply 
+        -PhysDrv [E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PDClear -Start|-Stop|-ShowProg |-ProgDsply 
+        -PhysDrv [E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PdLocate -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PdMarkMissing -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PdGetMissing -aN|-a0,1,2|-aALL 
+MegaCli -PdReplaceMissing -physdrv[E0:S0] -arrayA, -rowB -aN 
+MegaCli -PdPrpRmv [-UnDo] -physdrv[E0:S0] -aN|-a0,1,2|-aALL  
+MegaCli -EncInfo -aN|-a0,1,2|-aALL 
+MegaCli -PhyInfo -phyM -aN|-a0,1,2|-aALL  
+MegaCli -LDInfo -Lx|-L0,1,2|-Lall -aN|-a0,1,2|-aALL 
+MegaCli -LDSetProp  {-Name LdNamestring} | -RW|RO|Blocked | WT|WB|RA|NORA|ADRA 
+        | Cached|Direct | -EnDskCache|DisDskCache -Lx|-L0,1,2|-Lall -aN|-a0,1,2|-aALL 
+MegaCli -LDGetProp  -Cache | -Access | -Name | -DskCache -Lx|-L0,1,2|-LALL  
+        -aN|-a0,1,2|-aALL 
+MegaCli -LDInit {-Start [-full]}|-Abort|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -LDCC -Start|-Abort|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -LDBI -Enbl|-Dsbl|-getSetting|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL  
+MegaCli -LDRecon {-Start -rX [{-Add | -Rmv} -Physdrv[E0:S0,...]]}|-ShowProg|-ProgDsply 
+        -Lx -aN 
+MegaCli -LdPdInfo -aN|-a0,1,2|-aALL 
+MegaCli -LDGetNum -aN|-a0,1,2|-aALL 
+MegaCli -CfgLdAdd -rX[E0:S0,E1:S1,...] [WT|WB] [NORA|RA|ADRA] [Direct|Cached]
+        [-szXXX [-szYYY ...]] [-strpszM] [-Hsp[E0:S0,...]] [-AfterLdX] -aN 
+MegaCli -CfgEachDskRaid0 [WT|WB] [NORA|RA|ADRA] [Direct|Cached] [-strpszM] -aN |-a0,1,2|-aALL
+MegaCli -CfgClr -aN|-a0,1,2|-aALL 
+MegaCli -CfgDsply -aN|-a0,1,2|-aALL 
+MegaCli -CfgLdDel -LX|-L0,2,5...|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -CfgFreeSpaceinfo -aN|-a0,1,2|-aALL 
+MegaCli -CfgSpanAdd -r10 -Array0[E0:S0,E1:S1] -Array1[E0:S0,E1:S1] [-ArrayX[E0:S0,E1:S1] ...] -aN 
+MegaCli -CfgSpanAdd -r50 -Array0[E0:S0,E1:S1,E2:S2,...] -Array1[E0:S0,E1:S1,E2:S2,...] 
+        [-ArrayX[E0:S0,E1:S1,E2:S2,...] ...] [WT|WB] [NORA|RA|ADRA] [Direct|Cached] 
+        [-strpszM] -aN 
+MegaCli -CfgSave -f filename -aN   
+MegaCli -CfgRestore -f filename -aN   
+MegaCli -CfgForeign -Scan -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Dsply [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Preview [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Import [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Clear [x] -aN|-a0,1,2|-aALL    
+        x - index of foreign configurations. Optional. All by default. 
+MegaCli -AdpEventLog -GetEventLogInfo -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetEvents 	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetSinceShutdown  -f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetSinceReboot	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -IncludeDeleted	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -Clear -aN|-a0,1,2|-aALL 
+MegaCli -AdpBbuCmd -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuStatus -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuCapacityInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuDesignInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuProperties -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuLearn -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuMfgSleep -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuMfgSeal -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -SetBbuProperties -f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpFacDefSet -aN 
+MegaCli -AdpFwFlash -f filename [-NoSigChk] [-NoVerChk] -aN|-a0,1,2|-aALL  
+
+
+
+
+Release Date: 03/31/06
+===================
+
+Supported Controllers
+==================
+MegaRAID SAS 8408E
+MegaRAID SAS 8480E
+MegaRAID SAS 8308ELP
+MegaRAID SAS 8344ELP
+
+
+Component:
+=========
+SAS MegaRAID Linux MegaCLI
+Release Date: 03/31/2006
+
+
+Version Numbers:	MegaCLI
+===============		===========			
+Current Version		1.00.07
+
+
+Bug Fixes:  0
+=========
+
+1.	First Release
+
+Enhancements: 0
+=============
+
+1.	First Release
+
+
+Component Features: 0
+=================
+
+1.	First Release
+
+Known Restrictions: 0
+================
+
+1.	NONE
+
+Known Bugs: 0
+===========
+
+1.	NONE
+
+Installation Commands: 
+===================
+
+Supported options in MegaCli
+----------------------------
+
+MegaCli -v 
+MegaCli -help|-h|? 
+MegaCli -AdpSetProp {CacheFlushInterval -val}|{ RebuildRate -val} 
+    |{PatrolReadRate -val}|{BgiRate -val}|{CCRate -val} 
+    |{ReconRate -val}|{SpinupDriveCount -val}|{SpinupDelay -val} 
+    |{CoercionMode -val}|{ClusterEnable -val}|{PredFailPollInterval -val} 
+    |{BatWarnDsbl -val} |{EccBucketSize -val} | {EccBucketLeakRate -val} 
+    | AlarmEnbl | AlarmDsbl | AlarmSilence -aN|-a0,1,2|-aALL 
+MegaCli -AdpGetProp CacheFlush | RebuildRate | PatrolReadRate | BgiRate 
+    | CCRate | ReconRate | SpinupDriveCount | SpinupDelay | CoercionMode 
+    | PredFailPollInterval | EccBucketSize | EccBucketLeakRate | EccBucketCount
+    | ClusterEnable | BatWarnDsbl | AlarmDsply -aN|-a0,1,2|-aALL 
+MegaCli -AdpAllInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpGetTime -aN|-a0,1,2|-aALL  
+MegaCli -AdpSetTime yyyymmdd hh:mm:ss -aN   
+MegaCli -AdpBIOS {-Enbl [SOE|BE]}|-Dsbl|-Dsply -aN|-a0,1,2|-aALL 
+MegaCli -AdpBootDrive {-Set -Lx}|-Get -aN|-a0,1,2|-aALL 
+MegaCli -AdpAutoRbld -Enbl|-Dsbl|-Dsply -aN|-a0,1,2|-aALL
+MegaCli -AdpCacheFlush -aN|-a0,1,2|-aALL
+MegaCli -AdpPR -Dsbl|EnblAuto|EnblMan|Start|Stop|Info|{SetDelay Val} 
+         -aN|-a0,1,2|-aALL
+MegaCli -FwTermLog -BBUoff|BBUoffTemp|BBUon|Dsply|Clear -aN|-a0,1,2|-aALL
+MegaCli -AdpDiag [val] -aN|-a0,1,2|-aALL
+          val - Time in second.
+MegaCli -AdpBatTest -aN|-a0,1,2|-aALL
+MegaCli -PDList -aN|-a0,1,2|-aALL 
+MegaCli -PDGetNum -aN|-a0,1,2|-aALL 
+MegaCli -pdInfo -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PDOnline  -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PDOffline -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PDHSP {-Set [-Dedicated [-ArrayN|-Array0,1,2...]] [-EnclAffinity]} |-Rmv 
+	  -PhysDrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PDRbld -Start|-Stop|-ShowProg |-ProgDsply 
+        -PhysDrv [E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PDClear -Start|-Stop|-ShowProg |-ProgDsply 
+        -PhysDrv [E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL  
+MegaCli -PdLocate -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PdMarkMissing -physdrv[E0:S0,E1:S1,...] -aN|-a0,1,2|-aALL 
+MegaCli -PdGetMissing -aN|-a0,1,2|-aALL 
+MegaCli -PdReplaceMissing -physdrv[E0:S0] -arrayA, -rowB -aN 
+MegaCli -PdPrpRmv [-UnDo] -physdrv[E0:S0] -aN|-a0,1,2|-aALL  
+MegaCli -EncInfo -aN|-a0,1,2|-aALL 
+MegaCli -PhyInfo -phyM -aN|-a0,1,2|-aALL  
+MegaCli -LDInfo -Lx|-L0,1,2|-Lall -aN|-a0,1,2|-aALL 
+MegaCli -LDSetProp  {-Name LdNamestring} | -RW|RO|Blocked | WT|WB|RA|NORA|ADRA 
+        | Cached|Direct | -EnDskCache|DisDskCache -Lx|-L0,1,2|-Lall -aN|-a0,1,2|-aALL 
+MegaCli -LDGetProp  -Cache | -Access | -Name | -DskCache -Lx|-L0,1,2|-LALL  
+        -aN|-a0,1,2|-aALL 
+MegaCli -LDInit {-Start [-full]}|-Abort|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -LDCC -Start|-Abort|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -LDBI -Enbl|-Dsbl|-ShowProg|-ProgDsply -Lx|-L0,1,2|-LALL -aN|-a0,1,2|-aALL  
+MegaCli -LDRecon {-Start -rX [{-Add | -Rmv} -Physdrv[E0:S0,...]]}|-ShowProg|-ProgDsply 
+        -Lx -aN 
+MegaCli -LdPdInfo -aN|-a0,1,2|-aALL 
+MegaCli -LDGetNum -aN|-a0,1,2|-aALL 
+MegaCli -CfgLdAdd -rX[E0:S0,E1:S1,...] [WT|WB] [NORA|RA|ADRA] [Direct|Cached]
+        [-szXXX [-szYYY ...]] [-strpszM] [-Hsp[E0:S0,...]] [-AfterLdX] -aN 
+MegaCli -CfgClr -aN|-a0,1,2|-aALL 
+MegaCli -CfgDsply -aN|-a0,1,2|-aALL 
+MegaCli -CfgLdDel -LX|-L0,2,5...|-LALL -aN|-a0,1,2|-aALL 
+MegaCli -CfgFreeSpaceinfo -aN|-a0,1,2|-aALL 
+MegaCli -CfgSpanAdd -r10 -Array0[E0:S0,E1:S1] -Array1[E0:S0,E1:S1] [-ArrayX[E0:S0,E1:S1] ...] -aN 
+MegaCli -CfgSpanAdd -r50 -Array0[E0:S0,E1:S1,E2:S2,...] -Array1[E0:S0,E1:S1,E2:S2,...] 
+        [-ArrayX[E0:S0,E1:S1,E2:S2,...] ...] [WT|WB] [NORA|RA|ADRA] [Direct|Cached] 
+        [-strpszM] -aN 
+MegaCli -CfgSave -f filename -aN   
+MegaCli -CfgRestore -f filename -aN   
+MegaCli -CfgForeign -Scan -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Dsply [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Preview [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Import [x] -aN|-a0,1,2|-aALL    
+MegaCli -CfgForeign -Clear [x] -aN|-a0,1,2|-aALL    
+        x - index of foreign configurations. Optional. All by default. 
+MegaCli -AdpEventLog -GetEventLogInfo -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetEvents 	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetSinceShutdown  -f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -GetSinceReboot	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -IncludeDeleted	-f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpEventLog -Clear -aN|-a0,1,2|-aALL 
+MegaCli -AdpBbuCmd -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuStatus -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuCapacityInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuDesignInfo -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -GetBbuProperties -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuLearn -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuMfgSleep -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -BbuMfgSeal -aN|-a0,1,2|-aALL  
+MegaCli -AdpBbuCmd -SetBbuProperties -f <fileName> -aN|-a0,1,2|-aALL 
+MegaCli -AdpFacDefSet -aN 
+MegaCli -AdpFwFlash -f filename [-NoSigChk] [-NoVerChk] -aN|-a0,1,2|-aALL  
+

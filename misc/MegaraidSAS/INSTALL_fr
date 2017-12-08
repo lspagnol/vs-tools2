@@ -1,0 +1,10 @@
+Outils proprietaires Megaraid, telecharges depuis http://www.lsi.com/
+
+Installation:
+# cp Megaraid* /usr/local/sbin
+# cp raidstate /usr/local/sbin
+# ln -s /usr/local/sbin/raidstate /etc/cron.daily
+
+Utilisation:
+# raidstate (affiche un résumé des LUNs si probleme, rien si RAS)
+# raidstate -v (affiche un résumé des LUNs)

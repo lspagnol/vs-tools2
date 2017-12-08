@@ -1,0 +1,16 @@
+rss rss
+nproc proc
+nofile files
+memlock vml
+as vm
+locks locks
+msgqueue msgq
+nsock sock
+openfd ofd
+anon anon
+shmem shm
+semary sema
+nsems sems
+dentry dent
+disk disk
+tmpfs tmpfs

@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#       vs-tools
+#       
+#       Copyright 2010 Laurent Spagnol <laurent DOT spagnol AT univ-reims DOT fr>
+#       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+
+
+if [ -z "$1" ] ; then
+	echo "$0 <function> <args> [otions] [help]"
+	exit 1
+fi
+
+[ "$1" == "-i" ] && { bash --rcfile /root/.vs-shellrc ; exit 0 ; }
+
+. /usr/lib/vs-tools/functions.sh
+
+if [ "$1" == "help" ] ; then cat<<EOF
+
+NAME
+
+	vs-tools
+
+SYNOPSIS
+
+	<function> <args> [options]
+
+FUNCTIONS
+
+$(printf "        %s\n" $(ls ${_VSTOOLS_BIN}/functions |sed -e "s/\.sh//g"))
+
+DESCRIPTION
+
+	'vs-tools' is a wrapper for "Util-Vserver" that extend
+	functionalities of Linux-Vserver hosts.
+
+	This tool may be used in interactive mode with 'vs-tools -i'.
+
+	For help about one function, use '<function> help'.
+
+EOF
+exit 1
+
+fi
+
+begin
+
+$@
+
+end

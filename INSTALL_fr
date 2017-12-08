@@ -1,0 +1,243 @@
+----------------
+| INTRODUCTION |
+----------------
+
+
+	Cette version de "vs-tools" a ete entierement re-ecrite. Elle est
+clairement orientee "SAN", "Cluster", "Haute disponibilite" et
+fonctionne en test sur une architecture totalement redondante:
+- 2 cartes HBA sur chaque machine,
+- reliees a deux commutateurs FC,
+- relies a deux baies SAN Datacore (SANmelody), 2 To utiles sur disques
+  SAS 15KT en RAID 10 + 14 To utiles sur disques SATA 7KT en RAID5, le
+  tout en replication synchrone sur deux sites distants de plusieurs
+  kilometres.
+
+
+Les principales evolutions:
+
+* Globalement
+ - plus simple a installer ;)
+ - un script pour la preparation de l'environnement:
+   - gestion des dependances
+   - telechargement des sources, configuration et compilation
+ - un script pour l'installation de "vs-tools"
+ - plus de souplesse dans la configuration
+ - tout est documente: module/sous_module help
+ - une seule commande: "vs-tools"
+ - 3 modes d'utilisation possibles:
+   - 'include' direct dans un script shell
+      . /usr/lib/vs-tools/functions.sh
+   - appel externe depuis un autre script (shell, Perl ...)
+      vs-tools FONCTION ARGUMENTS OPTION1=... OPTION2=...
+   - mode 'interactif' (ligne de commande, completion automatique)
+      vs-tools -i
+
+* Reseau:
+ - jusqu'a 10 adresses IP par Vserveur (limite volontaire, le systeme
+   en supporte theoriquement jusqua 15).
+ - IPv6 (routage a finaliser)
+ - ToDo: integrer le traducteur de regles iptables de la version
+   precedente.
+
+* Stockage:
+ - montage des volumes "a la volee"
+ - utilisation de "pools" (en fait VG/LV) pour optimiser l'utilisation
+   de l'espace disque. La base d'un Vserveur n'est plus sous
+   '/var/lib/vservers/<vserveur>' mais sous
+   '/var/lib/vs-tools/<VG>/<LV>/<vserveur>'
+ - les Vserveurs peuvent etre facilement et rapidement "deplaces" d'un
+   noeud a un autre lorsqu'ils sont stockes sur un SAN
+ - support natif du multipath
+ - un demon "heartbeat" tourne sur chaque noeud, il utilise en priorite
+   un LV dedie en mode bloc. L'ideal est d'utiliser un peripherique FC
+   pour etre independant de la couche reseau. les noeud peuvent ainsi
+   communiquer meme si le reseau est H.S.
+ 
+* ToDo:
+ - ajouter la gestion des CPUset
+ - Re-ecriture de la partie "statistiques" (optimiser ...)
+ - Re-ecriture de la partie "consolidation" (integrer la notion de
+   sauvegardes incrementales)
+ - integrer le module de stats Munin
+
+
+-------------
+| PREREQUIS |
+-------------
+
+
+	Cet outil est developpe et teste sous Debian/Lenny, il est donc
+preferable d'utiliser cette distribution (meme si je n'ai pas eu de
+probleme avec Debian/Etch).
+
+-   Proceder a une installation minimale de Lenny (CD d'installation par
+	par le reseau).
+	Sur des serveurs recents (qui disposent le plus souvent d'au moins
+	4 Go de RAM), on peut installer un OS "amd64".
+
+-	La version precedente etait basee sur les paquets Debian/Etch. Le
+	support de linux-Vserveur sous Lenny est loin d'etre satisfaisant.
+	Il sera donc compile directement sur la machine.
+	
+-	Partitionner de facon a laisser de la place sous '/usr/src'.
+		
+	sda1	/boot	ext3	100 Mo
+	sda5			swap	512 Mo
+	sda6	/		ext3	10 Go
+	sda7			LVM		le reste (ne pas configurer LVM a ce stade)
+
+-	Mettre en place un reseau prive dedie aux noeuds/hôtes.
+
+	=> ATTENTION: depuis "EtchAndAHalf", les firmwares proprietaires ne
+	   sont plus inclus par defaut dans le noyau. Certains peripheriques
+	   ne fontionneront que si le bon paquet est explicitement installe.
+	   Exemple: un Dell 1950 (cartes reseau 'Broadcom', module 'bnx2')
+	   
+	   # apt-get install firmware-bnx2
+
+	=> NOTE: ce script permet d'ajouter les firmwares proprietaires a un
+	   fichier ISO d'installation Debian:
+	   http://people.debian.org/~dannf/add-firmware-to/add-firmware-to
+
+	=>	Je recommande fortement l'utilisation des labels pour Grub et
+		fstab:
+
+		Exemple de fichier "/etc/fstab":
+		
+		proc		/proc	proc	defaults			0	0
+		LABEL=ROOT	/		ext3	errors=remount-ro	0	1
+		LABEL=BOOT	/boot	ext3	defaults			0	2
+		LABEL=SWAP	none	swap	sw					0	0
+
+		Pour ajouter un label a la swap:
+		
+		# swapoff /dev/sda5 ;mkswap -L SWAP /dev/sda5 ;swapon /dev/sda5
+
+		Pensez egalement a modifer Grub "facon Debian" pour que la
+		commande 'update-grub' donne le resultat voulu:
+		
+			- Editer "/boot/grub/menu.lst"
+			- Rechercher la ligne "# kopt=root=/dev/sda6 ro"
+			- Remplacer par "# kopt=root=LABEL=ROOT ro"
+
+
+----------------
+| INSTALLATION |
+----------------
+
+
+-	Telecharger et extraire "vs-tools.tgz" sous "/usr/scr"
+	Heuuuuu ... si vous lisez ceci, c'est deja fait ;)
+
+-	Copier et editer le fichier de configuration (stage1)
+
+	# cp install-stage1.cf.sample install-stage1.cf
+
+-	Lancer le premier script d'installation.
+
+	# sh install-stage1.sh
+
+	Celui-ci fera le boulot pratiquement tout seul. Il faudra "juste"
+	intervenir pour le "make menuconfig" du noyau.
+
+	Ce dernier reprend, par defaut, la configuration du noyau courant.
+
+	Les heureux possesseurs d'un Dell {1,2,4}950 pouront recopier mon
+	".config" tout fait: "DELLx950_config-2.6.xx"
+
+	
+-	REDEMARRER LE SERVEUR
+
+-	Copier et editer le fichier de configuration (stage2)
+
+	# cp install-stage2.cf.sample install-stage2.cf
+
+-	Lancer le second script d'installation.
+	
+	# sh install-stage2.sh
+
+	Et c'est tout ;)
+
+-	Configurer "vs-tools"
+
+	# cd /etc/vs-tools
+	# cp build.cf.sample build.cf
+	# cp cluster.cf.sample cluster.cf
+	# cp networks.cf.sample networks.cf
+	
+	Editez ces trois fichiers (tout est documente).
+
+
+-	Preparer une arborescence de stokage locale:
+
+	- Le systeme doit disposer d'au moins une partition / disque libre
+	  pour LVM.
+	- Il suffit de creer un PV et l'associer a un VG.
+	
+	# pvcreate /dev/sdXX
+	# vgcreate local /dev/sdXX
+
+	ATTENTION en cas d'utilisation d'un systeme SAN qui gere le
+	"ThinProvisioning" ("DataCore" pour ne pas le citer...).
+
+	Cette fonctionnalite permet de presenter des LUNs de taille
+	superieure a l'espace disque reellement consomme.
+
+	Dans le cas de 'SANmelody', les LUNs sont crees par defaut a leur
+	taille maximale, soit 2 To.
+
+	L'utilisation de LVM (et des snapshots en particulier) peut etre
+	problematique (liberation des blocs non utilises lors de la
+	suppression des snapshots LVM).
+	
+	Enfin, "Datacore" ne sait pas modifer ses LUNs "a chaud".
+  
+	Etant donne qu'il est plus simple d'agrandir que de reduire un
+	volume, il faut donc creer les LUNs a la taille maximale côte SAN,
+	et limiter la taille des PV côte serveur:
+
+		# Creation du LUN sur le SAN a la taille maximale si le
+		  "ThinProvisioning" est disponible / active, puis sur un hôte
+		  "Linux-Vserver":
+
+		# vs-tools scsiScanLUNs
+		# vs-tools scsiShowLUNs
+		# pvcreate --setphysicalvolumesize=100G /dev/sdXX
+		# vgcreate VG /dev/sdXX
+		# vs-tools poolCreate VG/LV
+
+	Par defaut, "poolCreate" va creer un LV de 10 Go et utiliser XFS.
+
+	En cas de besoin, le pool (ou LV) pourra etre facilement agrandi
+	a chaud:
+	
+		# pvresize --setphysicalvolumesize=150G /dev/sdXX
+		# vs-tools poolGrow VG/LV 120G
+
+
+-	Correction du bug 'MTU/802.1q':
+	
+	Certains types de cartes reseau peuvent poser des problemes lors de
+	l'utilisation des vlans. Les trames ethernet "taggees" utilisent 4
+	octets supplementaires qui peuvent provoquer un depassement de MTU.
+	
+	Ce phenomene se caracterise par un comportement qui semble normal
+	lors des echanges ICMP ou des sessions interractives (ssh, telnet),
+	et un ecroulement du debit des que le trafic augmente (scp, ftp).
+	
+	Il suffit generalement de reduire le MTU pour contourner le bug des
+	modules concernes ('tulip', par exemple).
+	
+	# echo "_MTU=1496" > /etc/vservers/.defaults/dot1q.eth0
+	
+	(remplacer 'eth0' par le nom de votre interface de virtualisation).
+
+
+-	Initialiser le compteur de contexte:
+
+	Le 'XID' doit absolument etre unique.
+	
+	# echo NNNN > /etc/vservers/.defaults/context.next
+	
+	(exemple: remplacer 'NNNN' par '1 + <numero_hôte> * 1000')

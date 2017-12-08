@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ "$(lsmod |grep "^megaraid_sas")" ] ; then
+
+	grep "CONFIG_X86_64=y" /boot/config-$(uname -r) >/dev/null 2>/dev/null && arch=64
+
+	result="$(/usr/local/sbin/MegaCli${arch} -LDInfo -Lall -Aall)"
+
+	luns=$(echo "$result" |grep -c "^State:")
+	luns_ok=$(echo "$result" |grep -c "^State: Optimal")
+
+
+	if [ "$luns" != "$luns_ok" ] || [ "$1" == "-v" ] ; then
+		echo "$result"
+		exit 1
+	fi
+
+fi
+
+if [ -f /proc/mdstat ] ; then
+        result="$(cat /proc/mdstat)"
+        if [ "$(echo "$result" |grep " blocks " |awk '{print $4}' |grep '_')" ] || [ "$1" == "-v" ]; then
+                echo "$result"
+                exit 1
+        fi
+fi
+
+exit 0
